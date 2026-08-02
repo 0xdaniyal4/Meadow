@@ -1,0 +1,6 @@
+{
+  "name": "Meadow",
+  "description": "Decentralized Resume Vault on Shelby Protocol (Aptos). Permanent, cryptographically-secured public CV links.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

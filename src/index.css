@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #001620;
+    color: #cae7f9;
+  }
+}
+
+.font-mono {
+  font-family: 'Geist Mono', monospace;
+}
+
+/* California Beaches Palette Custom Styles & Glows */
+.bg-slate-bg {
+  background-color: #7D99AA;
+}
+
+.text-slate-bg {
+  color: #7D99AA;
+}
+
+.bg-sky-primary {
+  background-color: #66C4FF;
+}
+
+.text-sky-primary {
+  color: #66C4FF;
+}
+
+.border-sky-primary {
+  border-color: #66C4FF;
+}
+
+.bg-aqua-accent {
+  background-color: #66F4FF;
+}
+
+.text-aqua-accent {
+  color: #66F4FF;
+}
+
+.border-aqua-accent {
+  border-color: #66F4FF;
+}
+
+.bg-peach-highlight {
+  background-color: #FFC067;
+}
+
+.text-peach-highlight {
+  color: #FFC067;
+}
+
+.border-peach-highlight {
+  border-color: #FFC067;
+}
+
+/* Special Glow & Glassmorphism effects */
+.glow-aqua {
+  box-shadow: 0 0 20px rgba(102, 244, 255, 0.25);
+}
+
+.glow-aqua-lg {
+  box-shadow: 0 0 35px rgba(102, 244, 255, 0.4);
+}
+
+.glow-sky {
+  box-shadow: 0 0 20px rgba(102, 196, 255, 0.3);
+}
+
+.glow-peach {
+  box-shadow: 0 0 15px rgba(255, 192, 103, 0.4);
+}
+
+.glass-panel {
+  background: rgba(3, 35, 48, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(15, 45, 59, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(102, 244, 255, 0.15);
+}
+
