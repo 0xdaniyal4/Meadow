@@ -35,22 +35,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenUp
                 >
                   Explore
                 </button>
-                <a 
-                  href="https://docs.shelby.xyz" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="text-sm font-medium text-[#bec8d1] hover:text-[#66C4FF] transition-colors"
+                <button 
+                  onClick={() => onNavigate('verification')}
+                  className={`text-sm font-medium transition-colors hover:text-[#66C4FF] ${currentTab === 'verification' ? 'text-[#66C4FF]' : 'text-[#bec8d1]'}`}
                 >
                   Verify
-                </a>
-                <a 
-                  href="https://shelby.xyz" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="text-sm font-medium text-[#bec8d1] hover:text-[#66C4FF] transition-colors"
+                </button>
+                <button 
+                  onClick={() => onNavigate('network')}
+                  className={`text-sm font-medium transition-colors hover:text-[#66C4FF] ${currentTab === 'network' ? 'text-[#66C4FF]' : 'text-[#bec8d1]'}`}
                 >
                   Network
-                </a>
+                </button>
                 <a 
                   href="https://docs.shelby.xyz" 
                   target="_blank" 
@@ -74,22 +70,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenUp
                 >
                   Resumes
                 </button>
-                <a 
-                  href="https://shelby.xyz" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="text-sm font-medium text-[#bec8d1] hover:text-[#66C4FF] transition-colors"
+                <button 
+                  onClick={() => onNavigate('network')}
+                  className={`text-sm font-medium transition-colors hover:text-[#66C4FF] ${currentTab === 'network' ? 'text-[#66C4FF] border-b-2 border-[#66C4FF] pb-0.5' : 'text-[#bec8d1]'}`}
                 >
                   Network
-                </a>
-                <a 
-                  href="https://docs.shelby.xyz" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="text-sm font-medium text-[#bec8d1] hover:text-[#66C4FF] transition-colors"
+                </button>
+                <button 
+                  onClick={() => onNavigate('verification')}
+                  className={`text-sm font-medium transition-colors hover:text-[#66C4FF] ${currentTab === 'verification' ? 'text-[#66C4FF] border-b-2 border-[#66C4FF] pb-0.5' : 'text-[#bec8d1]'}`}
                 >
                   Verification
-                </a>
+                </button>
               </>
             )}
           </div>
@@ -108,15 +100,21 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenUp
               </button>
 
               <div className="flex items-center gap-2 bg-[#032330] border border-[#66F4FF]/30 px-3 py-1.5 rounded-lg">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#66F4FF] animate-pulse" />
-                <span className="font-mono text-xs font-semibold text-[#cae7f9]">
-                  {shortAddress}
-                </span>
-                {demoMode && (
-                  <span className="text-[10px] bg-[#FFC067]/20 text-[#FFC067] px-1.5 py-0.5 rounded font-mono">
-                    DEMO
+                <button 
+                  onClick={() => onNavigate('wallet')}
+                  className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+                  title="View Wallet Details"
+                >
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#66F4FF] animate-pulse" />
+                  <span className="font-mono text-xs font-semibold text-[#cae7f9]">
+                    {shortAddress}
                   </span>
-                )}
+                  {demoMode && (
+                    <span className="text-[10px] bg-[#FFC067]/20 text-[#FFC067] px-1.5 py-0.5 rounded font-mono">
+                      DEMO
+                    </span>
+                  )}
+                </button>
                 <button 
                   onClick={disconnectWallet}
                   className="text-[#bec8d1] hover:text-red-400 p-1 transition-colors ml-1"

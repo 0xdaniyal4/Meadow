@@ -9,16 +9,27 @@ import { Navbar } from './components/Navbar';
 import { LandingPage } from './components/LandingPage';
 import { DashboardPage } from './components/DashboardPage';
 import { UploadPage } from './components/UploadPage';
+import { NetworkPage } from './components/NetworkPage';
+import { VerificationPage } from './components/VerificationPage';
+import { WalletPage } from './components/WalletPage';
+import { CertificationsPage } from './components/CertificationsPage';
+import { JobsPage } from './components/JobsPage';
+import { SettingsPage } from './components/SettingsPage';
 import { PublicResumeModal } from './components/PublicResumeModal';
 import { Footer } from './components/Footer';
-import { INITIAL_DEMO_RESUMES } from './lib/shelby';
+import { getStoredResumes, saveStoredResumes } from './lib/shelby';
 import { ResumeItem, ViewTab } from './types';
 
 function MainAppContent() {
   const { isConnected, connectWallet, setDemoMode } = useAppWallet();
   const [currentTab, setCurrentTab] = useState<ViewTab>('landing');
-  const [resumes, setResumes] = useState<ResumeItem[]>(INITIAL_DEMO_RESUMES);
+  const [resumes, setResumes] = useState<ResumeItem[]>(() => getStoredResumes());
   const [selectedResumeForModal, setSelectedResumeForModal] = useState<ResumeItem | null>(null);
+
+  // Sync to local storage on resume updates
+  useEffect(() => {
+    saveStoredResumes(resumes);
+  }, [resumes]);
 
   // Parse URL query parameter for public link sharing (e.g. ?res=res-1)
   useEffect(() => {
@@ -30,7 +41,7 @@ function MainAppContent() {
         setSelectedResumeForModal(found);
       }
     }
-  }, []);
+  }, [resumes]);
 
   // When wallet connects, automatically transition from landing to dashboard
   useEffect(() => {
@@ -62,7 +73,6 @@ function MainAppContent() {
         if (r.id === id) {
           return { ...r, isPublic: !r.isPublic };
         }
-        // Keep single public resume or allow multiple
         return r;
       })
     );
@@ -70,7 +80,6 @@ function MainAppContent() {
 
   // Handle successful publishing of new resume
   const handlePublishSuccess = (newResume: ResumeItem) => {
-    // Set new resume as public, deactivate others if active
     setResumes(prev => [newResume, ...prev]);
     setCurrentTab('dashboard');
   };
@@ -94,9 +103,11 @@ function MainAppContent() {
           />
         )}
 
-        {(isConnected || currentTab === 'dashboard') && currentTab === 'dashboard' && (
+        {currentTab === 'dashboard' && (
           <DashboardPage
             resumes={resumes}
+            currentTab={currentTab}
+            onNavigate={(tab: ViewTab) => setCurrentTab(tab)}
             onToggleActive={handleToggleActive}
             onOpenUpload={() => setCurrentTab('upload')}
             onViewResume={(r) => setSelectedResumeForModal(r)}
@@ -109,6 +120,33 @@ function MainAppContent() {
             onCancel={() => setCurrentTab('dashboard')}
           />
         )}
+
+        {currentTab === 'network' && (
+          <NetworkPage />
+        )}
+
+        {currentTab === 'verification' && (
+          <VerificationPage />
+        )}
+
+        {currentTab === 'wallet' && (
+          <WalletPage />
+        )}
+
+        {currentTab === 'certifications' && (
+          <CertificationsPage />
+        )}
+
+        {currentTab === 'jobs' && (
+          <JobsPage
+            resumes={resumes}
+            onOpenUpload={() => setCurrentTab('upload')}
+          />
+        )}
+
+        {currentTab === 'settings' && (
+          <SettingsPage />
+        )}
       </div>
 
       {/* Public Resume Share Modal */}
@@ -119,8 +157,8 @@ function MainAppContent() {
         />
       )}
 
-      {/* Footer matching STITCH 5 */}
-      <Footer />
+      {/* Footer */}
+      <Footer onNavigate={(tab: ViewTab) => setCurrentTab(tab)} />
     </div>
   );
 }

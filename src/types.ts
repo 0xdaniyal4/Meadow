@@ -27,4 +27,13 @@ export interface ShelbyBlobMetadata {
   verifiedAt: string;
 }
 
-export type ViewTab = 'landing' | 'dashboard' | 'upload' | 'view-public';
+export type ViewTab = 
+  | 'landing' 
+  | 'dashboard' 
+  | 'upload' 
+  | 'network' 
+  | 'verification' 
+  | 'wallet' 
+  | 'certifications' 
+  | 'jobs' 
+  | 'settings';

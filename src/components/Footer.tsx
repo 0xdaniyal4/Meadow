@@ -9,8 +9,13 @@ import {
   AtSign,
   Heart
 } from 'lucide-react';
+import { ViewTab } from '../types';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate?: (tab: ViewTab) => void;
+}
+
+export const Footer: React.FC<FooterProps> = () => {
   return (
     <footer className="w-full py-8 px-6 mt-auto text-white shadow-inner" style={{ backgroundColor: '#7D99AA' }}>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">

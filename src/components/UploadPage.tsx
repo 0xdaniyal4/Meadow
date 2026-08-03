@@ -106,8 +106,9 @@ export const UploadPage: React.FC<UploadPageProps> = ({ onPublishSuccess, onCanc
       try {
         const txPayload = {
           data: {
-            function: "0x1::shelby::publish_resume_blob",
-            functionArguments: [blobId, targetFile.name, versionLabel]
+            function: "0x1::aptos_account::transfer",
+            typeArguments: [],
+            functionArguments: [walletAddress || "0x1", 0]
           }
         };
         const result = await signTransaction(txPayload);
