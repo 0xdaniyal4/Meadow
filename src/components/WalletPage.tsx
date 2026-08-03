@@ -116,7 +116,7 @@ export const WalletPage: React.FC = () => {
           <div className="p-4 rounded-xl bg-[#001620] border border-white/10 space-y-1">
             <span className="text-xs font-mono text-[#bec8d1] uppercase">Aptos Balance</span>
             <div className="text-2xl font-black text-[#cae7f9]">14.85 APT</div>
-            <div className="text-[11px] text-emerald-400 font-mono">Mainnet Network</div>
+            <div className="text-[11px] text-emerald-400 font-mono">Shelbynet Testnet</div>
           </div>
 
           <div className="p-4 rounded-xl bg-[#001620] border border-white/10 space-y-1">
@@ -143,7 +143,7 @@ export const WalletPage: React.FC = () => {
         </div>
 
         <a
-          href={`https://explorer.aptoslabs.com/account/${walletAddress}?network=mainnet`}
+          href={`https://explorer.aptoslabs.com/account/${walletAddress}?network=testnet`}
           target="_blank"
           rel="noreferrer"
           className="bg-[#001620] border border-white/10 hover:border-[#66C4FF] text-[#66C4FF] px-4 py-2.5 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-1.5 shrink-0"

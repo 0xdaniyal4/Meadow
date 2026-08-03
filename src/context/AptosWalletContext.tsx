@@ -4,6 +4,7 @@ import { PetraWallet } from 'petra-plugin-wallet-adapter';
 
 interface CustomWalletContextType {
   isConnected: boolean;
+  connected: boolean;
   walletAddress: string | null;
   shortAddress: string | null;
   walletName: string | null;
@@ -72,6 +73,7 @@ export const WalletBridgeProvider: React.FC<{ children: React.ReactNode }> = ({ 
     <CustomWalletContext.Provider
       value={{
         isConnected,
+        connected: isConnected,
         walletAddress: rawAddress,
         shortAddress,
         walletName: wallet.wallet?.name || (demoMode ? 'Petra (Demo)' : null),
